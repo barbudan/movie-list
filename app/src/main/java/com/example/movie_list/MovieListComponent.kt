@@ -13,7 +13,7 @@ import com.example.movie_list.MovieAdapter.movieAdapter
 import com.example.movie_list.model.Movie.movies
 
 
-class MovieListComponent {
+object MovieListComponent {
 
     fun showMoviesList(c: Context): View {
         return object : RenderableView(c) {

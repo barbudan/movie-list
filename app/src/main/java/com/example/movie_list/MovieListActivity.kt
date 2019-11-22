@@ -12,6 +12,7 @@ class MovieListActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(MovieListComponent().showMoviesList(this))
+        setContentView(MovieListComponent.showMoviesList(this))
     }
+
 }
