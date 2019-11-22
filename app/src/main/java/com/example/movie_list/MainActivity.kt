@@ -11,9 +11,12 @@ import trikita.anvil.DSL.*
 import trikita.anvil.RenderableAdapter
 import trikita.anvil.RenderableView
 
+import com.example.movie_list.MovieAdapter.movieAdapter
+import com.example.movie_list.MovieListComponent
+
 class MainActivity : AppCompatActivity() {
 
-    var movieAdapter = RenderableAdapter.withItems(movies) { pos, movie ->
+    /*var movieAdapter = RenderableAdapter.withItems(movies) { pos, movie ->
         linearLayout {
             size(FILL,WRAP)
             padding(dip(8))
@@ -53,7 +56,7 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
-    }
+    }*/
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -89,7 +92,9 @@ class MainActivity : AppCompatActivity() {
                         text("List movies")
                         textSize(56f)
                         onClick {
-                            setContentView(showMoviesList())
+                            val intent = Intent(applicationContext,MovieListActivity::class.java)
+                            startActivity(intent)
+                            //setContentView(MovieListComponent().showMoviesList(this.context))
                         }
                     }
                 }
@@ -97,7 +102,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun showMoviesList(): View {
+    /*fun showMoviesList(): View {
         return object : RenderableView(this) {
             override fun view() {
                 movieAdapter.notifyDataSetChanged()
@@ -122,5 +127,5 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-    }
+    }*/
 }
