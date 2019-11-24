@@ -8,11 +8,7 @@ import android.widget.LinearLayout
 import com.example.movie_list.model.Movie.MovieItem
 import com.example.movie_list.model.Movie.movies
 import trikita.anvil.DSL.*
-import trikita.anvil.RenderableAdapter
 import trikita.anvil.RenderableView
-
-import com.example.movie_list.MovieAdapter.movieAdapter
-import com.example.movie_list.MovieListComponent
 
 class MainActivity : AppCompatActivity() {
 
@@ -52,7 +48,6 @@ class MainActivity : AppCompatActivity() {
                         onClick {
                             val intent = Intent(applicationContext,MovieListActivity::class.java)
                             startActivity(intent)
-                            //setContentView(MovieListComponent().showMoviesList(this.context))
                         }
                     }
                 }
