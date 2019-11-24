@@ -11,8 +11,6 @@ import trikita.anvil.DSL.linearLayout
 import com.example.movie_list.model.Movie.MovieItem
 import com.example.movie_list.model.Movie.movies
 
-
-
 class MovieListActivity : AppCompatActivity() {
 
     val listComponent = ListComponent<MovieItem>()
