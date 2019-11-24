@@ -19,9 +19,8 @@ class MovieListActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         movieAdapter.items = movies
-        setContentView(listComponent.showItemList(this) { MovieListView() } )
+        setContentView(listComponent.showItemList(this) { movieListView() } )
     }
-
 
     fun movieView(movie: MovieItem) {
         linearLayout {
@@ -65,7 +64,7 @@ class MovieListActivity : AppCompatActivity() {
         }
     }
 
-    fun MovieListView() {
+    fun movieListView() {
         linearLayout {
             size(MATCH,MATCH)
             padding(dip(8))
