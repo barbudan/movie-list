@@ -1,9 +1,12 @@
-package com.example.movie_list
+package com.example.movie_list.activities
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.LinearLayout
+import com.example.movie_list.ListAdapter
+import com.example.movie_list.ListComponent
+import com.example.movie_list.MovieListApp
 import com.example.movie_list.actions.ActionCreator
 import com.example.movie_list.model.AppState
 
@@ -20,7 +23,8 @@ class MovieListActivity : AppCompatActivity(), StateListener<AppState> {
         get() = MovieListApp.redukt.state
 
     val listComponent = ListComponent<MovieItem>()
-    val movieAdapter = ListAdapter<MovieItem> { item -> listComponent.showItem(item) { movieView(item) } }
+    val movieAdapter =
+        ListAdapter<MovieItem> { item -> listComponent.showItem(item) { movieView(item) } }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,11 +63,6 @@ class MovieListActivity : AppCompatActivity(), StateListener<AppState> {
                             text(movie.releaseDate)
                             textSize(48f)
                         }
-                        textView {
-                            size(WRAP, WRAP)
-                            text(movie.genre)
-                            textSize(48f)
-                        }
                     }
                 }
             }
@@ -92,7 +91,6 @@ class MovieListActivity : AppCompatActivity(), StateListener<AppState> {
             intent.putExtra("movie_title", state.movie.title)
             intent.putExtra("movie_date", state.movie.releaseDate)
             intent.putExtra("movie_poster", state.movie.posterPath)
-            intent.putExtra("movie_genre", state.movie.genre)
             this.startActivity(intent)
         }
     }

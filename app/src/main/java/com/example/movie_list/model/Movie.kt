@@ -1,8 +1,16 @@
 package com.example.movie_list.model
 
+import com.google.gson.annotations.SerializedName
+
 object Movie {
 
     val movies = mutableListOf<MovieItem>()
 
-    data class MovieItem( val title: String, val releaseDate: String, val posterPath: String, val genre: String)
+    data class MovieItem(
+        @SerializedName("id") val id: String,
+        @SerializedName("title") val title: String,
+        @SerializedName("overview") val overview: String,
+        @SerializedName("release_date") val releaseDate: String,
+        @SerializedName("poster_path") val posterPath: String,
+        @SerializedName("backdrop_path") val backdropPath: String)
 }

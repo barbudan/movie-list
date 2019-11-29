@@ -1,14 +1,19 @@
-package com.example.movie_list
+package com.example.movie_list.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.LinearLayout
+import com.example.movie_list.MovieListApp
+import com.example.movie_list.model.AppState
 import trikita.anvil.DSL.linearLayout
 import trikita.anvil.RenderableView
 import trikita.anvil.DSL.*
 
 class MovieDetailActivity : AppCompatActivity() {
+
+    protected val state: AppState
+        get() = MovieListApp.redukt.state
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,7 +42,7 @@ class MovieDetailActivity : AppCompatActivity() {
                     }
                     textView {
                         size(WRAP,WRAP)
-                        text(intent.getStringExtra("movie_genre"))
+                        text(intent.getStringExtra("movie_poster"))
                         textSize(56f)
                         gravity(CENTER_HORIZONTAL)
                     }

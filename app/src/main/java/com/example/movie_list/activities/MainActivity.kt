@@ -1,10 +1,11 @@
-package com.example.movie_list
+package com.example.movie_list.activities
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.LinearLayout
+import com.example.movie_list.MovieListApp
 import com.example.movie_list.actions.ActionCreator
 import com.example.movie_list.model.AppState
 import com.example.movie_list.model.Movie.MovieItem
@@ -32,13 +33,13 @@ class MainActivity : AppCompatActivity(), StateListener<AppState> {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        movies.add(MovieItem("title1","2010","poster1","comedy1"))
-        movies.add(MovieItem("title2","2011","poster2","comedy2"))
-        movies.add(MovieItem("title3","2012","poster3","comedy3"))
-        movies.add(MovieItem("title4","2013","poster4","comedy4"))
-        movies.add(MovieItem("title5", "2041", "poster5", "comedy5"))
-        movies.add(MovieItem("title6","2016","poster6","comedy6"))
-        movies.add(MovieItem("title7","2015","poster7","comedy7"))
+        movies.add(MovieItem("0", "title0","blablabla","2010","www", "aaa"))
+        movies.add(MovieItem("1","title1","blablabla","2011", "www", "aaa"))
+        movies.add(MovieItem("2","title2","blablabla","2012", "www", "aaa"))
+        movies.add(MovieItem("3","title3","blablabla","2013", "www", "aaa"))
+        movies.add(MovieItem("4", "title4", "blablabla", "2014", "www", "aaa"))
+        movies.add(MovieItem("5","title5","blablabla","2015", "www", "aaa"))
+        movies.add(MovieItem("6","title6","blablabla","2016", "www", "aaa"))
 
         setContentView(getView())
     }
@@ -50,7 +51,7 @@ class MainActivity : AppCompatActivity(), StateListener<AppState> {
 
     override fun onChanged(state: AppState) {
         if(state.list!=null) {
-            val intent = Intent(applicationContext,MovieListActivity::class.java)
+            val intent = Intent(applicationContext, MovieListActivity::class.java)
             startActivity(intent)
             finish()
         }
