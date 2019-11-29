@@ -1,10 +1,11 @@
-package com.example.movie_list
+package com.example.movie_list.ui
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.LinearLayout
+import com.example.movie_list.MovieListApp
 import com.example.movie_list.actions.ActionCreator
 import com.example.movie_list.model.AppState
 import com.example.movie_list.model.Movie.MovieItem
@@ -50,7 +51,7 @@ class MainActivity : AppCompatActivity(), StateListener<AppState> {
 
     override fun onChanged(state: AppState) {
         if(state.list!=null) {
-            val intent = Intent(applicationContext,MovieListActivity::class.java)
+            val intent = Intent(applicationContext, MovieListActivity::class.java)
             startActivity(intent)
             finish()
         }

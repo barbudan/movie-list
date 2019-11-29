@@ -1,4 +1,4 @@
-package com.example.movie_list
+package com.example.movie_list.ui
 
 import android.content.Context
 import android.view.View
@@ -18,7 +18,5 @@ class ListComponent<T: Any> {
     fun showItem(item: T, view: (T) -> Unit) {
         view(item)
     }
-
-
 
 }

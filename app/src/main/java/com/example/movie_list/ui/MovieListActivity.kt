@@ -1,9 +1,10 @@
-package com.example.movie_list
+package com.example.movie_list.ui
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.LinearLayout
+import com.example.movie_list.MovieListApp
 import com.example.movie_list.actions.ActionCreator
 import com.example.movie_list.model.AppState
 
@@ -20,7 +21,8 @@ class MovieListActivity : AppCompatActivity(), StateListener<AppState> {
         get() = MovieListApp.redukt.state
 
     val listComponent = ListComponent<MovieItem>()
-    val movieAdapter = ListAdapter<MovieItem> { item -> listComponent.showItem(item) { movieView(item) } }
+    val movieAdapter =
+        ListAdapter<MovieItem> { item -> listComponent.showItem(item) { movieView(item) } }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
