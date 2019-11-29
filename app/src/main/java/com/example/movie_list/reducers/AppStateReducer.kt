@@ -2,6 +2,7 @@ package com.example.movie_list.reducers
 
 import com.example.movie_list.actions.Actions
 import com.example.movie_list.model.AppState
+import com.example.movie_list.model.Movie
 import com.example.movie_list.model.Movie.MovieItem
 import com.github.raulccabreu.redukt.actions.Reduce
 import com.github.raulccabreu.redukt.reducers.BaseAnnotatedReducer
@@ -11,6 +12,11 @@ class AppStateReducer : BaseAnnotatedReducer<AppState>() {
     @Reduce(Actions.LIST_MOVIES)
     fun listMovies(state: AppState, newList: List<MovieItem>): AppState {
         return state.copy(list = newList, movie = null)
+    }
+
+    @Reduce(Actions.SHOW_MOVIE)
+    fun showMovie(state: AppState, newMovie: MovieItem): AppState {
+        return state.copy(movie = newMovie)
     }
 
 }

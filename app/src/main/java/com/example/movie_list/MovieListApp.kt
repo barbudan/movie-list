@@ -11,12 +11,11 @@ class MovieListApp : Application() {
     companion object {
         lateinit var redukt: Redukt<AppState>
 
-        fun initializeRedukt(context: Context, appState: AppState):
-                Redukt<AppState> {
+        fun initializeRedukt(context: Context, appState: AppState): Redukt<AppState> {
             val redukt = Redukt(appState)
 
             addReducers(redukt)
-            //addMiddlewares(context, redukt)
+            addMiddlewares(context, redukt)
 
             return redukt
         }
@@ -25,9 +24,9 @@ class MovieListApp : Application() {
             redukt.reducers["appStateReducer"] = AppStateReducer()
         }
 
-        /*private fun addMiddlewares(context: Context, redukt: Redukt<AppState>) {
-            redukt.middlewares["Middleware"] = Middleware()
-        }*/
+        private fun addMiddlewares(context: Context, redukt: Redukt<AppState>) {
+         //   redukt.middlewares["Middleware"] = Middleware()
+        }
     }
 
     override fun onCreate() {

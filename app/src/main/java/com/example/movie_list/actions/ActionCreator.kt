@@ -2,6 +2,7 @@ package com.example.movie_list.actions
 
 import com.example.movie_list.MovieListApp
 import com.example.movie_list.actions.Actions.LIST_MOVIES
+import com.example.movie_list.actions.Actions.SHOW_MOVIE
 import com.example.movie_list.model.Movie.MovieItem
 import com.github.raulccabreu.redukt.actions.Action
 
@@ -21,6 +22,10 @@ class ActionCreator private constructor() {
 
     fun listMovies(list: List<MovieItem>) {
         asyncDispatch(Action(LIST_MOVIES, list))
+    }
+
+    fun showMovie(movie: MovieItem) {
+        asyncDispatch(Action(SHOW_MOVIE, movie))
     }
 
 }

@@ -5,17 +5,33 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.LinearLayout
+import com.example.movie_list.actions.ActionCreator
+import com.example.movie_list.model.AppState
 import com.example.movie_list.model.Movie.MovieItem
 import com.example.movie_list.model.Movie.movies
+import com.github.raulccabreu.redukt.states.StateListener
 import trikita.anvil.DSL.*
 import trikita.anvil.RenderableView
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), StateListener<AppState> {
+
+    protected val state: AppState
+        get() = MovieListApp.redukt.state
+
+    override fun onStart() {
+        super.onStart()
+        MovieListApp.redukt.listeners.add(this)
+        onChanged(state)
+    }
+
+    override fun onStop() {
+        super.onStop()
+        MovieListApp.redukt.listeners.remove(this)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // Adding some movies manually to test UI
         movies.add(MovieItem("title1","2010","poster1","comedy1"))
         movies.add(MovieItem("title2","2011","poster2","comedy2"))
         movies.add(MovieItem("title3","2012","poster3","comedy3"))
@@ -25,6 +41,19 @@ class MainActivity : AppCompatActivity() {
         movies.add(MovieItem("title7","2015","poster7","comedy7"))
 
         setContentView(getView())
+    }
+
+    override fun hasChanged(newState: AppState, oldState: AppState): Boolean {
+        if (newState.list != oldState.list) return true
+        return false
+    }
+
+    override fun onChanged(state: AppState) {
+        if(state.list!=null) {
+            val intent = Intent(applicationContext,MovieListActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
     }
 
     fun getView(): View {
@@ -46,8 +75,7 @@ class MainActivity : AppCompatActivity() {
                         text("List movies")
                         textSize(56f)
                         onClick {
-                            val intent = Intent(applicationContext,MovieListActivity::class.java)
-                            startActivity(intent)
+                            ActionCreator.instance.listMovies(movies)
                         }
                     }
                 }
