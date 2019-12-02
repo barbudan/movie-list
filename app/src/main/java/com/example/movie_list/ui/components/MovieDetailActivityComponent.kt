@@ -1,19 +1,12 @@
-package com.example.movie_list.ui
+package com.example.movie_list.ui.components
 
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
 import android.view.View
 import android.widget.LinearLayout
-import trikita.anvil.DSL.linearLayout
-import trikita.anvil.RenderableView
+import androidx.appcompat.app.AppCompatActivity
 import trikita.anvil.DSL.*
+import trikita.anvil.RenderableView
 
-class MovieDetailActivity : AppCompatActivity() {
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(getView())
-    }
+abstract class MovieDetailActivityComponent : AppCompatActivity() {
 
     fun getView(): View {
         return object : RenderableView(this) {
@@ -45,4 +38,5 @@ class MovieDetailActivity : AppCompatActivity() {
             }
         }
     }
+
 }

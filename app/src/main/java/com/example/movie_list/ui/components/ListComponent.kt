@@ -1,4 +1,4 @@
-package com.example.movie_list.ui
+package com.example.movie_list.ui.components
 
 import android.content.Context
 import android.view.View

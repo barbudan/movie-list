@@ -1,20 +1,15 @@
-package com.example.movie_list.ui
+package com.example.movie_list.ui.activities
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
-import android.widget.LinearLayout
 import com.example.movie_list.MovieListApp
-import com.example.movie_list.actions.ActionCreator
 import com.example.movie_list.model.AppState
 import com.example.movie_list.model.Movie.MovieItem
 import com.example.movie_list.model.Movie.movies
+import com.example.movie_list.ui.components.MainActivityComponent
 import com.github.raulccabreu.redukt.states.StateListener
-import trikita.anvil.DSL.*
-import trikita.anvil.RenderableView
 
-class MainActivity : AppCompatActivity(), StateListener<AppState> {
+class MainActivity : MainActivityComponent(), StateListener<AppState> {
 
     protected val state: AppState
         get() = MovieListApp.redukt.state
@@ -57,30 +52,4 @@ class MainActivity : AppCompatActivity(), StateListener<AppState> {
         }
     }
 
-    fun getView(): View {
-        return object : RenderableView(this) {
-            override fun view() {
-                linearLayout {
-                    size(MATCH, MATCH)
-                    padding(dip(8))
-                    orientation(LinearLayout.VERTICAL)
-                    gravity(CENTER)
-                    textView {
-                        size(WRAP,WRAP)
-                        text("Hello! Click on the button below to show our movies list!")
-                        textSize(64f)
-                        gravity(CENTER_HORIZONTAL)
-                    }
-                    button {
-                        size(WRAP,WRAP)
-                        text("List movies")
-                        textSize(56f)
-                        onClick {
-                            ActionCreator.instance.listMovies(movies)
-                        }
-                    }
-                }
-            }
-        }
-    }
 }
