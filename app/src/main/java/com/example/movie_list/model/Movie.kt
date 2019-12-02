@@ -4,5 +4,9 @@ object Movie {
 
     val movies = mutableListOf<MovieItem>()
 
-    data class MovieItem( val title: String, val releaseDate: String, val posterPath: String, val genre: String)
+    data class MovieItem( val title: String,
+                          val releaseDate: String,
+                          val posterPath: String,
+                          val genre: String,
+                          var change: Boolean = false)
 }

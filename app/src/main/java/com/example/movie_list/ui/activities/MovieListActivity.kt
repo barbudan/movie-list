@@ -3,6 +3,7 @@ package com.example.movie_list.ui.activities
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.LinearLayout
 import com.example.movie_list.MovieListApp
 import com.example.movie_list.actions.ActionCreator
@@ -27,17 +28,21 @@ class MovieListActivity : MovieListActivityComponent() {
     }
 
     override fun hasChanged(newState: AppState, oldState: AppState): Boolean {
-        if (newState.movie != oldState.movie) return true
+        if (newState.list != oldState.list) {
+            return true
+        }
         return false
     }
 
     override fun onChanged(state: AppState) {
-        if(state.movie!=null) {
+        if(state.list?.get(position)?.change!!) {
+            val item = state.list?.get(position)
             val intent = Intent(this, MovieDetailActivity::class.java)
-            intent.putExtra("movie_title", state.movie.title)
-            intent.putExtra("movie_date", state.movie.releaseDate)
-            intent.putExtra("movie_poster", state.movie.posterPath)
-            intent.putExtra("movie_genre", state.movie.genre)
+            intent.putExtra("movie_title", item.title)
+            intent.putExtra("movie_date", item.releaseDate)
+            intent.putExtra("movie_poster", item.posterPath)
+            intent.putExtra("movie_genre", item.genre)
+            intent.putExtra("movie_genre", item.change)
             this.startActivity(intent)
         }
     }

@@ -1,5 +1,6 @@
 package com.example.movie_list.ui.components
 
+import android.util.Log
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import com.example.movie_list.actions.ActionCreator
@@ -9,6 +10,7 @@ import trikita.anvil.DSL.*
 
 abstract class MovieListActivityComponent : AppActivityLifecycleComponent() {
 
+    var position: Int = 0
     val listComponent = ListComponent<MovieItem>()
     val movieAdapter =
         ListAdapter<MovieItem> { item ->
@@ -55,6 +57,11 @@ abstract class MovieListActivityComponent : AppActivityLifecycleComponent() {
                             text(movie.genre)
                             textSize(48f)
                         }
+                        textView {
+                            size(WRAP, WRAP)
+                            text(movie.change.toString())
+                            textSize(48f)
+                        }
                     }
                 }
             }
@@ -71,7 +78,9 @@ abstract class MovieListActivityComponent : AppActivityLifecycleComponent() {
                 size(FILL,FILL)
                 adapter(movieAdapter)
                 onItemClick { av, v, pos, id ->
-                    ActionCreator.instance.showMovie(movies[pos])
+                    movies[pos].change = true
+                    position = pos
+                    ActionCreator.instance.showMovie(movies)
                 }
             }
         }
