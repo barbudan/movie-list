@@ -7,7 +7,7 @@ import com.example.movie_list.model.Movie.MovieItem
 import com.example.movie_list.model.Movie.movies
 import trikita.anvil.DSL.*
 
-abstract class MovieListActivityComponent : AppCompatActivity() {
+abstract class MovieListActivityComponent : AppActivityLifecycleComponent() {
 
     val listComponent = ListComponent<MovieItem>()
     val movieAdapter =

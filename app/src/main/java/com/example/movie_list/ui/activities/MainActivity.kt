@@ -2,28 +2,13 @@ package com.example.movie_list.ui.activities
 
 import android.content.Intent
 import android.os.Bundle
-import com.example.movie_list.MovieListApp
 import com.example.movie_list.model.AppState
 import com.example.movie_list.model.Movie.MovieItem
 import com.example.movie_list.model.Movie.movies
 import com.example.movie_list.ui.components.MainActivityComponent
 import com.github.raulccabreu.redukt.states.StateListener
 
-class MainActivity : MainActivityComponent(), StateListener<AppState> {
-
-    protected val state: AppState
-        get() = MovieListApp.redukt.state
-
-    override fun onStart() {
-        super.onStart()
-        MovieListApp.redukt.listeners.add(this)
-        onChanged(state)
-    }
-
-    override fun onStop() {
-        super.onStop()
-        MovieListApp.redukt.listeners.remove(this)
-    }
+class MainActivity : MainActivityComponent() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

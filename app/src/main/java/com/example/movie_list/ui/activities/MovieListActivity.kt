@@ -18,26 +18,12 @@ import com.example.movie_list.ui.components.ListComponent
 import com.example.movie_list.ui.components.MovieListActivityComponent
 import com.github.raulccabreu.redukt.states.StateListener
 
-class MovieListActivity : MovieListActivityComponent(), StateListener<AppState> {
-
-    protected val state: AppState
-        get() = MovieListApp.redukt.state
+class MovieListActivity : MovieListActivityComponent() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         movieAdapter.items = movies
         setContentView(listComponent.showItemList(this) { movieListView() } )
-    }
-
-    override fun onStart() {
-        super.onStart()
-        MovieListApp.redukt.listeners.add(this)
-        onChanged(state)
-    }
-
-    override fun onStop() {
-        super.onStop()
-        MovieListApp.redukt.listeners.remove(this)
     }
 
     override fun hasChanged(newState: AppState, oldState: AppState): Boolean {

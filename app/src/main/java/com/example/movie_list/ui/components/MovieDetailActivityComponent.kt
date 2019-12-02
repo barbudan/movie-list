@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import trikita.anvil.DSL.*
 import trikita.anvil.RenderableView
 
-abstract class MovieDetailActivityComponent : AppCompatActivity() {
+abstract class MovieDetailActivityComponent : AppActivityLifecycleComponent() {
 
     fun getView(): View {
         return object : RenderableView(this) {
