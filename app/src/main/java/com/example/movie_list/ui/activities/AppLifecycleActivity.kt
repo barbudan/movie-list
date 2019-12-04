@@ -1,11 +1,11 @@
-package com.example.movie_list.ui.components
+package com.example.movie_list.ui.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import com.example.movie_list.MovieListApp
 import com.example.movie_list.model.AppState
 import com.github.raulccabreu.redukt.states.StateListener
 
-abstract class AppActivityLifecycleComponent : AppCompatActivity(), StateListener<AppState> {
+abstract class AppLifecycleActivity : AppCompatActivity(), StateListener<AppState> {
 
     protected val state: AppState
         get() = MovieListApp.redukt.state

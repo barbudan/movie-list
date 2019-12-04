@@ -1,20 +1,20 @@
 package com.example.movie_list.ui.activities
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import com.example.movie_list.actions.ActionCreator
+import android.view.View
 import com.example.movie_list.model.AppState
-import com.example.movie_list.model.Movie.MovieItem
-import com.example.movie_list.model.Movie.movies
-import com.example.movie_list.ui.components.MainActivityComponent
-import com.github.raulccabreu.redukt.states.StateListener
+import com.example.movie_list.model.Movie
+import com.example.movie_list.ui.components.mainComponent
+import trikita.anvil.RenderableView
 
-class MainActivity : MainActivityComponent() {
+class MainActivity : AppLifecycleActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(getView())
+        setContentView(getView(this))
     }
 
     override fun hasChanged(newState: AppState, oldState: AppState): Boolean {
@@ -24,10 +24,18 @@ class MainActivity : MainActivityComponent() {
 
     override fun onChanged(state: AppState) {
         state.list?.let {
-            val intent = Intent(applicationContext, MovieListActivity::class.java)
+            val intent = Intent(this, MovieListActivity::class.java)
             startActivity(intent)
+            Log.i("Teste", state.list.toString())
             finish()
         }
     }
 
+    fun getView(c: Context): View {
+        return object : RenderableView(c) {
+            override fun view(){
+                mainComponent { }
+            }
+        }
+    }
 }

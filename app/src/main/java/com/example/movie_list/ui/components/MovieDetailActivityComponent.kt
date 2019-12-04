@@ -2,11 +2,11 @@ package com.example.movie_list.ui.components
 
 import android.view.View
 import android.widget.LinearLayout
-import androidx.appcompat.app.AppCompatActivity
+import com.example.movie_list.ui.activities.AppLifecycleActivity
 import trikita.anvil.DSL.*
 import trikita.anvil.RenderableView
 
-abstract class MovieDetailActivityComponent : AppActivityLifecycleComponent() {
+abstract class MovieDetailActivityComponent : AppLifecycleActivity() {
 
     fun getView(): View {
         return object : RenderableView(this) {

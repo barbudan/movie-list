@@ -1,27 +1,29 @@
 package com.example.movie_list.ui.components
 
-import android.util.Log
+import android.content.Context
 import android.widget.LinearLayout
-import androidx.appcompat.app.AppCompatActivity
 import com.example.movie_list.actions.ActionCreator
-import com.example.movie_list.model.Movie.MovieItem
-import com.example.movie_list.model.Movie.movies
+import com.example.movie_list.model.Movie
+import com.example.movie_list.ui.activities.AppLifecycleActivity
 import trikita.anvil.DSL.*
+import trikita.anvil.RenderableView
 
-abstract class MovieListActivityComponent : AppActivityLifecycleComponent() {
+/*inline fun movieListComponent(crossinline func: MovieListComponent.() -> Unit) {
+    highOrderComponent(func)
+}*/
 
-    var position: Int = 0
-    val listComponent = ListComponent<MovieItem>()
+class MovieListComponent {
+
+    val position = 0
+    val listComponent = ListComponent<Movie>()
     val movieAdapter =
-        ListAdapter<MovieItem> { item ->
+        ListAdapter<Movie> { item ->
             listComponent.showItem(item) {
-                movieView(
-                    item
-                )
+                movieView(item)
             }
         }
 
-    fun movieView(movie: MovieItem) {
+    fun movieView(movie: Movie) {
         linearLayout {
             size(FILL,WRAP)
             padding(dip(8))
@@ -57,17 +59,12 @@ abstract class MovieListActivityComponent : AppActivityLifecycleComponent() {
                             text(movie.genre)
                             textSize(48f)
                         }
-                        textView {
-                            size(WRAP, WRAP)
-                            text(movie.change.toString())
-                            textSize(48f)
-                        }
                     }
                 }
             }
         }
     }
-
+/*
     fun movieListView() {
         linearLayout {
             size(MATCH,MATCH)
@@ -79,11 +76,10 @@ abstract class MovieListActivityComponent : AppActivityLifecycleComponent() {
                 adapter(movieAdapter)
                 onItemClick { av, v, pos, id ->
                     movies[pos].change = true
-                    position = pos
                     ActionCreator.instance.showMovie(movies)
                 }
             }
         }
-    }
+    }*/
 
 }
