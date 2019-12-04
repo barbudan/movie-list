@@ -10,11 +10,12 @@ import trikita.anvil.RenderableView
 
 /*inline fun movieListComponent(crossinline func: MovieListComponent.() -> Unit) {
     highOrderComponent(func)
-}*/
+}
 
-class MovieListComponent {
+class MovieListComponent(c: Context) : RenderableView(c) {
 
-    val position = 0
+
+    var position = 0
     val listComponent = ListComponent<Movie>()
     val movieAdapter =
         ListAdapter<Movie> { item ->
@@ -22,6 +23,10 @@ class MovieListComponent {
                 movieView(item)
             }
         }
+
+    override fun view() {
+        movieView()
+    }
 
     fun movieView(movie: Movie) {
         linearLayout {
@@ -64,7 +69,7 @@ class MovieListComponent {
             }
         }
     }
-/*
+
     fun movieListView() {
         linearLayout {
             size(MATCH,MATCH)
@@ -75,11 +80,11 @@ class MovieListComponent {
                 size(FILL,FILL)
                 adapter(movieAdapter)
                 onItemClick { av, v, pos, id ->
-                    movies[pos].change = true
-                    ActionCreator.instance.showMovie(movies)
+                    position = pos
+                    ActionCreator.instance.showMovie()
                 }
             }
         }
-    }*/
+    }
 
-}
+}*/

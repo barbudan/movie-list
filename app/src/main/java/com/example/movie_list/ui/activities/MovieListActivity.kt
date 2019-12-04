@@ -7,10 +7,9 @@ import android.widget.LinearLayout
 import com.example.movie_list.actions.ActionCreator
 import com.example.movie_list.model.AppState
 import com.example.movie_list.model.Movie
-import com.example.movie_list.model.payloads.ShowMoviePayload
 import com.example.movie_list.ui.components.ListAdapter
 import com.example.movie_list.ui.components.ListComponent
-import com.example.movie_list.ui.components.MovieListComponent
+//import com.example.movie_list.ui.components.MovieListComponent
 //import com.example.movie_list.ui.components.movieListComponent
 import trikita.anvil.Anvil.render
 import trikita.anvil.DSL.*

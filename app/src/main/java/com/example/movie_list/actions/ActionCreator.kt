@@ -5,7 +5,7 @@ import com.example.movie_list.actions.Actions.LIST_MOVIES
 import com.example.movie_list.actions.Actions.POPULATE_MOVIE_LIST
 import com.example.movie_list.actions.Actions.SHOW_MOVIE
 import com.example.movie_list.model.Movie
-import com.example.movie_list.model.payloads.ShowMoviePayload
+import com.example.movie_list.model.payloads.PopulateMoviePayload
 import com.github.raulccabreu.redukt.actions.Action
 
 class ActionCreator private constructor() {

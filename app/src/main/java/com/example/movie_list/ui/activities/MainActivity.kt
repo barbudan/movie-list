@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import com.example.movie_list.model.AppState
 import com.example.movie_list.model.Movie
 import com.example.movie_list.ui.components.mainComponent
@@ -19,14 +20,14 @@ class MainActivity : AppLifecycleActivity() {
 
     override fun hasChanged(newState: AppState, oldState: AppState): Boolean {
         if (newState.list != oldState.list) return true
+        if (newState.pageChangeRequest != oldState.pageChangeRequest) return true
         return false
     }
 
     override fun onChanged(state: AppState) {
-        state.list?.let {
+        state.pageChangeRequest?.let {
             val intent = Intent(this, MovieListActivity::class.java)
             startActivity(intent)
-            Log.i("Teste", state.list.toString())
             finish()
         }
     }

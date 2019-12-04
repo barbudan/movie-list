@@ -19,16 +19,14 @@ class MovieDetailActivity : MovieDetailActivityComponent() {
     }
 
     override fun hasChanged(newState: AppState, oldState: AppState): Boolean {
-    //    if (newState.list != oldState.list) return true
+        if (newState.isMovieClicked != oldState.isMovieClicked) return true
         return false
     }
 
     override fun onChanged(state: AppState) {
-    /*    if(state.list!=null) {
-            val intent = Intent(applicationContext, MovieListActivity::class.java)
-            startActivity(intent)
+        if(!state.isMovieClicked!!) {
             finish()
-        }*/
+        }
     }
 
 }

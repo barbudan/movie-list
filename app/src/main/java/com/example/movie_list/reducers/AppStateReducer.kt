@@ -4,7 +4,7 @@ import android.util.Log
 import com.example.movie_list.actions.Actions
 import com.example.movie_list.model.AppState
 import com.example.movie_list.model.Movie
-import com.example.movie_list.model.payloads.ShowMoviePayload
+import com.example.movie_list.model.payloads.PopulateMoviePayload
 import com.github.raulccabreu.redukt.actions.Reduce
 import com.github.raulccabreu.redukt.reducers.BaseAnnotatedReducer
 import java.util.Collections.copy
@@ -13,7 +13,7 @@ class AppStateReducer : BaseAnnotatedReducer<AppState>() {
 
     @Reduce(Actions.LIST_MOVIES)
     fun listMovies(state: AppState, newList: List<Movie>): AppState {
-        return state.copy(list = newList, isMovieClicked = false)
+        return state.copy(list = newList, isMovieClicked = false, pageChangeRequest = true)
     }
 
     @Reduce(Actions.SHOW_MOVIE)
@@ -23,7 +23,7 @@ class AppStateReducer : BaseAnnotatedReducer<AppState>() {
 
     @Reduce(Actions.POPULATE_MOVIE_LIST)
     fun populateMovieList(state: AppState, newList: List<Movie>): AppState {
-        return state.copy(list = newList, isMovieClicked = false)
+        return state.copy(list = newList, isMovieClicked = false, pageChangeRequest = null)
     }
 
 }

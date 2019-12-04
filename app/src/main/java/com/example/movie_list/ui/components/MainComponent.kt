@@ -3,6 +3,7 @@ package com.example.movie_list.ui.components
 import android.content.Context
 import android.view.View
 import android.widget.LinearLayout
+import android.widget.Toast
 import com.example.movie_list.actions.ActionCreator
 import com.example.movie_list.model.Movie
 import com.example.movie_list.ui.activities.AppLifecycleActivity
@@ -18,6 +19,7 @@ inline fun mainComponent(crossinline func: MainComponent.() -> Unit) {
 class MainComponent(context: Context) : RenderableView(context) {
 
     val movies = mutableListOf<Movie>()
+    var isPopulated = false
 
     override fun view() {
         linearLayout {
@@ -47,8 +49,10 @@ class MainComponent(context: Context) : RenderableView(context) {
                                 "comedy${(1..12).shuffled().first()}")
                             )
                         }
-                        //it.isEnabled = false
+                        it.isEnabled = false
+                        isPopulated = true
                         ActionCreator.instance.populateMovieList(movies)
+                        Toast.makeText(context, "Your List has been Populated", Toast.LENGTH_SHORT).show()
                     }
                 }
                 button {
@@ -56,7 +60,11 @@ class MainComponent(context: Context) : RenderableView(context) {
                     text("List movies")
                     textSize(56f)
                     onClick {
-                        ActionCreator.instance.listMovies(movies)
+                        if(!isPopulated) {
+                            Toast.makeText(context, "Your List is not populated yet", Toast.LENGTH_SHORT).show()
+                        } else {
+                            ActionCreator.instance.listMovies(movies)
+                        }
                     }
                 }
             }
