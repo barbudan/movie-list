@@ -3,14 +3,14 @@ package com.example.movie_list.reducers
 import com.example.movie_list.actions.Actions
 import com.example.movie_list.model.AppState
 import com.example.movie_list.model.Movie
-import com.example.movie_list.model.payloads.ChangePagePayload
+import com.example.movie_list.model.payloads.ListRequestPayload
 import com.github.raulccabreu.redukt.actions.Reduce
 import com.github.raulccabreu.redukt.reducers.BaseAnnotatedReducer
 
 class AppStateReducer : BaseAnnotatedReducer<AppState>() {
 
     @Reduce(Actions.LIST_MOVIES)
-    fun listMovies(state: AppState, payload: ChangePagePayload): AppState {
+    fun listMovies(state: AppState, payload: ListRequestPayload): AppState {
         return state.copy(list = payload.list, movieClicked = false, listMoviesRequest = payload.request)
     }
 

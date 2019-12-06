@@ -8,27 +8,27 @@ import com.example.movie_list.model.AppState
 import com.example.movie_list.model.Movie
 import com.example.movie_list.ui.components.ListAdapter
 import com.example.movie_list.ui.components.ListComponent
-//import com.example.movie_list.ui.components.MovieListComponent
-//import com.example.movie_list.ui.components.movieListComponent
+import com.example.movie_list.ui.components.MovieListComponent
 import trikita.anvil.DSL.*
 
 class MovieListActivity : AppLifecycleActivity() {
 
     var position = 0
+    val movieListComponent = MovieListComponent()
     val listComponent = ListComponent<Movie>()
     val movieAdapter =
         ListAdapter<Movie> { item ->
             listComponent.showItem(item) {
-                movieView(item)
+                movieListComponent.movieView(item)
             }
         }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        movieAdapter.items = state.list!!
+        state.list?.let { movieAdapter.items = it }
         setContentView(listComponent.showItemList(this) {
-            movieListView()
+                movieListView()
         })
     }
 

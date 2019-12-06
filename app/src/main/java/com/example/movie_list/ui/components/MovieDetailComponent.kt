@@ -3,7 +3,7 @@ package com.example.movie_list.ui.components
 import android.content.Context
 import android.widget.LinearLayout
 import com.example.movie_list.actions.ActionCreator
-import com.example.movie_list.model.payloads.ChangePagePayload
+import com.example.movie_list.model.payloads.ListRequestPayload
 import com.example.movie_list.model.Movie
 import trikita.anvil.DSL.*
 import trikita.anvil.RenderableView
@@ -55,7 +55,7 @@ class MovieDetailComponent(context: Context) : RenderableView(context) {
                 text("Return to Movies List")
                 textSize(56f)
                 onClick {
-                    movieList.let { it -> ActionCreator.instance.listMovies(ChangePagePayload(it, false)) }
+                    movieList.let { it -> ActionCreator.instance.listMovies(ListRequestPayload(it, false)) }
                 }
             }
         }

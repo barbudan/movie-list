@@ -1,12 +1,11 @@
 package com.example.movie_list.ui.components
 
 import android.content.Context
-import android.util.Log
 import android.widget.LinearLayout
 import android.widget.Toast
 import com.example.movie_list.actions.ActionCreator
 import com.example.movie_list.model.Movie
-import com.example.movie_list.model.payloads.ChangePagePayload
+import com.example.movie_list.model.payloads.ListRequestPayload
 import trikita.anvil.RenderableView
 import trikita.anvil.DSL.*
 
@@ -59,14 +58,14 @@ class MainComponent(context: Context) : RenderableView(context) {
                     textSize(56f)
                     onClick {
                         if(tempList.isEmpty()) {
-                            ActionCreator.instance.listMovies(ChangePagePayload(tempList, false))
+                            ActionCreator.instance.listMovies(ListRequestPayload(tempList, false))
                             Toast.makeText(
                                 context,
                                 "Your List is not populated yet, please update it",
                                 Toast.LENGTH_SHORT
                             ).show()
                         } else {
-                            ActionCreator.instance.listMovies(ChangePagePayload(tempList, true))
+                            ActionCreator.instance.listMovies(ListRequestPayload(tempList, true))
                         }
                     }
                 }
