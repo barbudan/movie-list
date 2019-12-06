@@ -26,9 +26,18 @@ class MainActivity : AppLifecycleActivity() {
 
     override fun onChanged(state: AppState) {
         state.pageChangeRequest?.let {
-            val intent = Intent(this, MovieListActivity::class.java)
-            startActivity(intent)
-            finish()
+            if(state.pageChangeRequest) {
+                val intent = Intent(this, MovieListActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
+            else {
+                Toast.makeText(
+                    applicationContext,
+                    "Your List is not populated yet, please update it",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
         }
     }
 

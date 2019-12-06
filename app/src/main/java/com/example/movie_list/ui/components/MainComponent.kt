@@ -1,14 +1,12 @@
 package com.example.movie_list.ui.components
 
 import android.content.Context
-import android.view.View
+import android.util.Log
 import android.widget.LinearLayout
 import android.widget.Toast
 import com.example.movie_list.actions.ActionCreator
 import com.example.movie_list.model.Movie
-import com.example.movie_list.ui.activities.AppLifecycleActivity
-import trikita.anvil.Anvil
-import trikita.anvil.DSL
+import com.example.movie_list.model.payloads.ChangePagePayload
 import trikita.anvil.RenderableView
 import trikita.anvil.DSL.*
 
@@ -18,10 +16,10 @@ inline fun mainComponent(crossinline func: MainComponent.() -> Unit) {
 
 class MainComponent(context: Context) : RenderableView(context) {
 
-    val movies = mutableListOf<Movie>()
-    var isPopulated = false
+    var tempList: List<Movie> = emptyList()
 
     override fun view() {
+
         linearLayout {
             size(MATCH, MATCH)
             padding(dip(8))
@@ -39,9 +37,10 @@ class MainComponent(context: Context) : RenderableView(context) {
                 gravity(CENTER)
                 button {
                     size(WRAP, WRAP)
-                    text("Populate List")
+                    text("Update List")
                     textSize(56f)
                     onClick {
+                        val movies = mutableListOf<Movie>()
                         (1..10).forEach {
                             movies.add(Movie(
                                 "title${(1..12).shuffled().first()}",
@@ -49,10 +48,9 @@ class MainComponent(context: Context) : RenderableView(context) {
                                 "comedy${(1..12).shuffled().first()}")
                             )
                         }
-                        it.isEnabled = false
-                        isPopulated = true
-                        ActionCreator.instance.populateMovieList(movies)
-                        Toast.makeText(context, "Your List has been Populated", Toast.LENGTH_SHORT).show()
+                        tempList = movies
+                        ActionCreator.instance.updateMovieList(movies)
+                        Toast.makeText(context, "Your List has been Updated", Toast.LENGTH_SHORT).show()
                     }
                 }
                 button {
@@ -60,10 +58,10 @@ class MainComponent(context: Context) : RenderableView(context) {
                     text("List movies")
                     textSize(56f)
                     onClick {
-                        if(!isPopulated) {
-                            Toast.makeText(context, "Your List is not populated yet", Toast.LENGTH_SHORT).show()
+                        if(tempList.isEmpty()) {
+                            ActionCreator.instance.listMovies(ChangePagePayload(tempList, false))
                         } else {
-                            ActionCreator.instance.listMovies(movies)
+                            ActionCreator.instance.listMovies(ChangePagePayload(tempList, true))
                         }
                     }
                 }

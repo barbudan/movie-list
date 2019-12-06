@@ -2,7 +2,6 @@ package com.example.movie_list.ui.activities
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.widget.LinearLayout
 import com.example.movie_list.actions.ActionCreator
 import com.example.movie_list.model.AppState
@@ -11,7 +10,6 @@ import com.example.movie_list.ui.components.ListAdapter
 import com.example.movie_list.ui.components.ListComponent
 //import com.example.movie_list.ui.components.MovieListComponent
 //import com.example.movie_list.ui.components.movieListComponent
-import trikita.anvil.Anvil.render
 import trikita.anvil.DSL.*
 
 class MovieListActivity : AppLifecycleActivity() {
@@ -35,14 +33,14 @@ class MovieListActivity : AppLifecycleActivity() {
     }
 
     override fun hasChanged(newState: AppState, oldState: AppState): Boolean {
-        if (newState.isMovieClicked != oldState.isMovieClicked) {
+        if (newState.movieClicked != oldState.movieClicked) {
             return true
         }
         return false
     }
 
     override fun onChanged(state: AppState) {
-        if(state.isMovieClicked!!) {
+        if(state.movieClicked!!) {
             val item = state.list?.get(position)!!
             val intent = Intent(this, MovieDetailActivity::class.java)
             intent.putExtra("movie_title", item.title)

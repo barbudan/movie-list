@@ -1,29 +1,27 @@
 package com.example.movie_list.reducers
 
-import android.util.Log
 import com.example.movie_list.actions.Actions
 import com.example.movie_list.model.AppState
 import com.example.movie_list.model.Movie
-import com.example.movie_list.model.payloads.PopulateMoviePayload
+import com.example.movie_list.model.payloads.ChangePagePayload
 import com.github.raulccabreu.redukt.actions.Reduce
 import com.github.raulccabreu.redukt.reducers.BaseAnnotatedReducer
-import java.util.Collections.copy
 
 class AppStateReducer : BaseAnnotatedReducer<AppState>() {
 
     @Reduce(Actions.LIST_MOVIES)
-    fun listMovies(state: AppState, newList: List<Movie>): AppState {
-        return state.copy(list = newList, isMovieClicked = false, pageChangeRequest = true)
+    fun listMovies(state: AppState, payload: ChangePagePayload): AppState {
+        return state.copy(list = payload.list, movieClicked = false, pageChangeRequest = payload.request)
     }
 
     @Reduce(Actions.SHOW_MOVIE)
     fun showMovie(state: AppState, payload: Boolean): AppState {
-        return state.copy(list = state.list, isMovieClicked = true)
+        return state.copy(list = state.list, movieClicked = true, pageChangeRequest = true)
     }
 
-    @Reduce(Actions.POPULATE_MOVIE_LIST)
-    fun populateMovieList(state: AppState, newList: List<Movie>): AppState {
-        return state.copy(list = newList, isMovieClicked = false, pageChangeRequest = null)
+    @Reduce(Actions.UPDATE_MOVIE_LIST)
+    fun updateMovieList(state: AppState, newList: List<Movie>): AppState {
+        return state.copy(list = newList, movieClicked = false, pageChangeRequest = null)
     }
 
 }
