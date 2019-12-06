@@ -41,13 +41,15 @@ class MovieListActivity : AppLifecycleActivity() {
     override fun onChanged(state: AppState) {
         state.movieClicked?.let {
             if(state.movieClicked) {
-                val item = state.list?.get(position)!!
-                val intent = Intent(this, MovieDetailActivity::class.java)
-                intent.putExtra("movie_title", item.title)
-                intent.putExtra("movie_date", item.releaseDate)
-                intent.putExtra("movie_poster", item.posterPath)
-                intent.putExtra("movie_genre", item.genre)
-                this.startActivity(intent)
+                state.list?.let {
+                    val item = state.list[position]
+                    val intent = Intent(this, MovieDetailActivity::class.java)
+                    intent.putExtra("movie_title", item.title)
+                    intent.putExtra("movie_date", item.releaseDate)
+                    intent.putExtra("movie_poster", item.posterPath)
+                    intent.putExtra("movie_genre", item.genre)
+                    this.startActivity(intent)
+                }
             }
         }
     }
