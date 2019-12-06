@@ -60,6 +60,11 @@ class MainComponent(context: Context) : RenderableView(context) {
                     onClick {
                         if(tempList.isEmpty()) {
                             ActionCreator.instance.listMovies(ChangePagePayload(tempList, false))
+                            Toast.makeText(
+                                context,
+                                "Your List is not populated yet, please update it",
+                                Toast.LENGTH_SHORT
+                            ).show()
                         } else {
                             ActionCreator.instance.listMovies(ChangePagePayload(tempList, true))
                         }

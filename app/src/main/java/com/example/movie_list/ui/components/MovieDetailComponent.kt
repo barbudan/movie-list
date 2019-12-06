@@ -71,4 +71,5 @@ class MovieDetailComponent(context: Context) : RenderableView(context) {
     fun fillList(list: List<Movie>) {
         movieList = list
     }
+
 }

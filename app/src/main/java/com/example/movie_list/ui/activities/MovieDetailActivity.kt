@@ -14,7 +14,6 @@ class MovieDetailActivity : AppLifecycleActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Log.i("Testando", "Aaa2a")
         setContentView(getView(this))
     }
 
@@ -27,7 +26,6 @@ class MovieDetailActivity : AppLifecycleActivity() {
     override fun onChanged(state: AppState) {
         state.movieClicked?.let {
             if(!state.movieClicked) {
-                Log.i("Testando", "Aaaa")
                 finish()
             }
         }

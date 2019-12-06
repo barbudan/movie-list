@@ -3,6 +3,7 @@ package com.example.movie_list.ui.activities
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import com.example.movie_list.model.AppState
@@ -29,13 +30,6 @@ class MainActivity : AppLifecycleActivity() {
                 startActivity(intent)
                 finish()
             }
-            else {
-                Toast.makeText(
-                    applicationContext,
-                    "Your List is not populated yet, please update it",
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
         }
     }
 
@@ -46,4 +40,5 @@ class MainActivity : AppLifecycleActivity() {
             }
         }
     }
+
 }
