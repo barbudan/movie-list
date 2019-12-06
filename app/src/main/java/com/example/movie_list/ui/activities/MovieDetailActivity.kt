@@ -12,13 +12,16 @@ class MovieDetailActivity : MovieDetailActivityComponent() {
     }
 
     override fun hasChanged(newState: AppState, oldState: AppState): Boolean {
+        if (newState.listMoviesRequest != oldState.listMoviesRequest) return true
         if (newState.movieClicked != oldState.movieClicked) return true
         return false
     }
 
     override fun onChanged(state: AppState) {
-        if(!state.movieClicked!!) {
-            finish()
+        state.listMoviesRequest?.let {
+            if(!state.listMoviesRequest) {
+                finish()
+            }
         }
     }
 

@@ -11,17 +11,17 @@ class AppStateReducer : BaseAnnotatedReducer<AppState>() {
 
     @Reduce(Actions.LIST_MOVIES)
     fun listMovies(state: AppState, payload: ChangePagePayload): AppState {
-        return state.copy(list = payload.list, movieClicked = false, pageChangeRequest = payload.request)
+        return state.copy(list = payload.list, movieClicked = false, listMoviesRequest = payload.request)
     }
 
     @Reduce(Actions.SHOW_MOVIE)
     fun showMovie(state: AppState, payload: Boolean): AppState {
-        return state.copy(list = state.list, movieClicked = true, pageChangeRequest = true)
+        return state.copy(list = state.list, movieClicked = true, listMoviesRequest = true)
     }
 
     @Reduce(Actions.UPDATE_MOVIE_LIST)
     fun updateMovieList(state: AppState, newList: List<Movie>): AppState {
-        return state.copy(list = newList, movieClicked = false, pageChangeRequest = null)
+        return state.copy(list = newList, movieClicked = false, listMoviesRequest = null)
     }
 
 }
