@@ -15,12 +15,10 @@ class MovieListActivity : AppLifecycleActivity() {
 
     var position = 0
     val movieListComponent = MovieListComponent()
-    val listComponent = ListComponent<Movie>()
+    val listComponent = ListComponent<Movie>() // TALVEZ MODIFICAR/RETIRAR ESSE COMPONENTE
     val movieAdapter =
         ListAdapter<Movie> { item ->
-            listComponent.showItem(item) {
-                movieListComponent.movieView(item)
-            }
+                movieView(item) // IRÁ PARA UM COMPONENTE ESPECÍFICO (MOVIEVIEWCOMPONENT)
         }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,17 +26,17 @@ class MovieListActivity : AppLifecycleActivity() {
 
         state.list?.let { movieAdapter.items = it }
         setContentView(listComponent.showItemList(this) {
-                movieListView()
+                movieListView() // IRÁ PARA UM COMPONENTE ESPECÍFICO (MOVIELISTCOMPONENT)
         })
     }
 
     override fun hasChanged(newState: AppState, oldState: AppState): Boolean {
-        if (newState.listMoviesRequest != oldState.listMoviesRequest) return true
         if (newState.movieClicked != oldState.movieClicked) return true
         return false
     }
 
     override fun onChanged(state: AppState) {
+        // PÔR TUDO NO COMPONENTE (ONDE HÁ CLICK) PARA MUDANÇA DE TELA
         state.movieClicked?.let {
             if(state.movieClicked) {
                 state.list?.let {

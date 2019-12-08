@@ -27,7 +27,7 @@ class ActionCreator private constructor() {
     }
 
     fun showMovie() {
-        asyncDispatch(Action(SHOW_MOVIE, true))
+        asyncDispatch(Action<Any>(SHOW_MOVIE))
     }
 
     fun updateMovieList(list: List<Movie>) {

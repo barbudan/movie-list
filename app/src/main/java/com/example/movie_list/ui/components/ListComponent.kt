@@ -15,8 +15,4 @@ class ListComponent<T: Any> {
         }
     }
 
-    fun showItem(item: T, view: (T) -> Unit) {
-        view(item)
-    }
-
 }

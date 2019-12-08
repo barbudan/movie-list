@@ -18,7 +18,6 @@ class MovieDetailActivity : AppLifecycleActivity() {
     }
 
     override fun hasChanged(newState: AppState, oldState: AppState): Boolean {
-        if (newState.listMoviesRequest != oldState.listMoviesRequest) return true
         if (newState.movieClicked != oldState.movieClicked) return true
         return false
     }

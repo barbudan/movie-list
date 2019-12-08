@@ -9,6 +9,7 @@ import android.widget.Toast
 import com.example.movie_list.model.AppState
 import com.example.movie_list.ui.components.mainComponent
 import trikita.anvil.RenderableView
+import trikita.anvil.DSL.activity
 
 class MainActivity : AppLifecycleActivity() {
 
@@ -19,16 +20,17 @@ class MainActivity : AppLifecycleActivity() {
 
     override fun hasChanged(newState: AppState, oldState: AppState): Boolean {
         if (newState.list != oldState.list) return true
-        if (newState.listMoviesRequest != oldState.listMoviesRequest) return true
         return false
     }
 
     override fun onChanged(state: AppState) {
-        state.listMoviesRequest?.let {
-            if(state.listMoviesRequest) {
-                val intent = Intent(this, MovieListActivity::class.java)
-                startActivity(intent)
-                finish()
+        state.list?.let {
+            runOnUiThread {
+                Toast.makeText(
+                    this,
+                    "Your List has been Updated",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
         }
     }

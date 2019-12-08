@@ -1,11 +1,17 @@
 package com.example.movie_list.ui.components
 
 import android.content.Context
+import android.content.Intent
 import android.widget.LinearLayout
 import android.widget.Toast
+import androidx.core.content.ContextCompat.startActivity
+import com.example.movie_list.MovieListApp
 import com.example.movie_list.actions.ActionCreator
+import com.example.movie_list.model.AppState
 import com.example.movie_list.model.Movie
 import com.example.movie_list.model.payloads.ListRequestPayload
+import com.example.movie_list.ui.activities.MainActivity
+import com.example.movie_list.ui.activities.MovieListActivity
 import trikita.anvil.RenderableView
 import trikita.anvil.DSL.*
 
@@ -15,7 +21,8 @@ inline fun mainComponent(crossinline func: MainComponent.() -> Unit) {
 
 class MainComponent(context: Context) : RenderableView(context) {
 
-    var tempList: List<Movie> = emptyList()
+    protected val state: AppState
+        get() = MovieListApp.redukt.state
 
     override fun view() {
 
@@ -39,6 +46,7 @@ class MainComponent(context: Context) : RenderableView(context) {
                     text("Update List")
                     textSize(56f)
                     onClick {
+                        // CRIAR MIDDLEWARE PARA ISSO
                         val movies = mutableListOf<Movie>()
                         (1..10).forEach {
                             movies.add(Movie(
@@ -47,9 +55,7 @@ class MainComponent(context: Context) : RenderableView(context) {
                                 "comedy${(1..12).shuffled().first()}")
                             )
                         }
-                        tempList = movies
                         ActionCreator.instance.updateMovieList(movies)
-                        Toast.makeText(context, "Your List has been Updated", Toast.LENGTH_SHORT).show()
                     }
                 }
                 button {
@@ -57,15 +63,15 @@ class MainComponent(context: Context) : RenderableView(context) {
                     text("List movies")
                     textSize(56f)
                     onClick {
-                        if(tempList.isEmpty()) {
-                            ActionCreator.instance.listMovies(ListRequestPayload(tempList, false))
+                        if(state.list==null) {
                             Toast.makeText(
                                 context,
                                 "Your List is not populated yet, please update it",
                                 Toast.LENGTH_SHORT
                             ).show()
                         } else {
-                            ActionCreator.instance.listMovies(ListRequestPayload(tempList, true))
+                            val intent = Intent(context,MovieListActivity::class.java)
+                            context.startActivity(intent)
                         }
                     }
                 }
