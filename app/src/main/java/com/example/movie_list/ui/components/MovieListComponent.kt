@@ -1,62 +1,36 @@
 package com.example.movie_list.ui.components
 
 import android.content.Context
+import android.content.Intent
+import android.util.Log
 import android.widget.LinearLayout
+import com.example.movie_list.MovieListApp
 import com.example.movie_list.actions.ActionCreator
+import com.example.movie_list.model.AppState
 import com.example.movie_list.model.Movie
 import com.example.movie_list.ui.activities.AppLifecycleActivity
+import com.example.movie_list.ui.activities.MovieDetailActivity
 import trikita.anvil.DSL.*
 import trikita.anvil.RenderableView
 
-/*inline fun movieListComponent(crossinline func: MovieListComponent.() -> Unit) {
+inline fun movieListComponent(crossinline func: MovieListComponent.() -> Unit) {
     highOrderComponent(func)
-}*/
+}
 
-class MovieListComponent {
+class MovieListComponent(context: Context) : RenderableView(context) {
 
-    fun movieView(movie: Movie) {
-        linearLayout {
-            size(FILL,WRAP)
-            padding(dip(8))
-            orientation(LinearLayout.VERTICAL)
-            linearLayout {
-                size(FILL, WRAP)
-                padding(dip(8))
-                orientation(LinearLayout.VERTICAL)
-                linearLayout {
-                    orientation(LinearLayout.HORIZONTAL)
-                    size(WRAP, WRAP)
-                    textView {
-                        size(WRAP, WRAP)
-                        text(movie.posterPath)
-                        textSize(64f)
-                    }
-                    linearLayout {
-                        orientation(LinearLayout.VERTICAL)
-                        size(WRAP,WRAP)
-                        margin(100,0,0,0)
-                        textView {
-                            size(WRAP, WRAP)
-                            text(movie.title)
-                            textSize(64f)
-                        }
-                        textView {
-                            size(WRAP, WRAP)
-                            text(movie.releaseDate)
-                            textSize(48f)
-                        }
-                        textView {
-                            size(WRAP, WRAP)
-                            text(movie.genre)
-                            textSize(48f)
-                        }
-                    }
-                }
+    protected val state: AppState
+        get() = MovieListApp.redukt.state
+
+    val movieAdapter =
+        ListAdapter<Movie> { item ->
+            movieViewComponent {
+                defineMovie(item)
             }
         }
-    }
 
-    /*fun movieListView(position: Int, movieAdapter: ListAdapter<Movie>) {
+    override fun view() {
+        state.list?.let { movieAdapter.items = it }
         linearLayout {
             size(MATCH,MATCH)
             padding(dip(8))
@@ -66,11 +40,16 @@ class MovieListComponent {
                 size(FILL,FILL)
                 adapter(movieAdapter)
                 onItemClick { av, v, pos, id ->
-                    position = pos
-                    ActionCreator.instance.showMovie()
+                    val item = state.list?.get(pos)!!
+                    val intent = Intent(context, MovieDetailActivity::class.java)
+                    intent.putExtra("movie_title", item.title)
+                    intent.putExtra("movie_date", item.releaseDate)
+                    intent.putExtra("movie_poster", item.posterPath)
+                    intent.putExtra("movie_genre", item.genre)
+                    context.startActivity(intent)
                 }
             }
         }
-    }*/
+    }
 
 }

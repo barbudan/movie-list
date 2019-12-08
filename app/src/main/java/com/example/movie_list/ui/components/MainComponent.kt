@@ -2,6 +2,7 @@ package com.example.movie_list.ui.components
 
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.core.content.ContextCompat.startActivity

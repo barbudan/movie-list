@@ -18,16 +18,12 @@ class MovieDetailActivity : AppLifecycleActivity() {
     }
 
     override fun hasChanged(newState: AppState, oldState: AppState): Boolean {
-        if (newState.movieClicked != oldState.movieClicked) return true
+        if (newState != oldState) return true
         return false
     }
 
     override fun onChanged(state: AppState) {
-        state.movieClicked?.let {
-            if(!state.movieClicked) {
-                finish()
-            }
-        }
+
     }
 
     fun getView(c: Context): View {

@@ -1,9 +1,7 @@
 package com.example.movie_list.actions
 
 import com.example.movie_list.MovieListApp
-import com.example.movie_list.actions.Actions.LIST_MOVIES
 import com.example.movie_list.actions.Actions.UPDATE_MOVIE_LIST
-import com.example.movie_list.actions.Actions.SHOW_MOVIE
 import com.example.movie_list.model.Movie
 import com.example.movie_list.model.payloads.ListRequestPayload
 import com.github.raulccabreu.redukt.actions.Action
@@ -20,14 +18,6 @@ class ActionCreator private constructor() {
 
     private fun asyncDispatch(action: Action<*>) {
         MovieListApp.redukt.dispatch(action, true)
-    }
-
-    fun listMovies(payload: ListRequestPayload) {
-        asyncDispatch(Action(LIST_MOVIES, payload))
-    }
-
-    fun showMovie() {
-        asyncDispatch(Action<Any>(SHOW_MOVIE))
     }
 
     fun updateMovieList(list: List<Movie>) {

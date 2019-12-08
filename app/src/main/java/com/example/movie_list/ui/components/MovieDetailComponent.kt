@@ -50,14 +50,6 @@ class MovieDetailComponent(context: Context) : RenderableView(context) {
                 textSize(56f)
                 gravity(CENTER_HORIZONTAL)
             }
-            button {
-                size(WRAP,WRAP)
-                text("Return to Movies List")
-                textSize(56f)
-                onClick {
-                    movieList.let { it -> ActionCreator.instance.listMovies(ListRequestPayload(it, false)) }
-                }
-            }
         }
     }
 

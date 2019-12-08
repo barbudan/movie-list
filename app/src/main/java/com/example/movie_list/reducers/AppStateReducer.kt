@@ -9,19 +9,9 @@ import com.github.raulccabreu.redukt.reducers.BaseAnnotatedReducer
 
 class AppStateReducer : BaseAnnotatedReducer<AppState>() {
 
-    @Reduce(Actions.LIST_MOVIES)
-    fun listMovies(state: AppState, payload: ListRequestPayload): AppState {
-        return state.copy(list = payload.list, movieClicked = false)
-    }
-
-    @Reduce(Actions.SHOW_MOVIE)
-    fun showMovie(state: AppState, empty: Any?): AppState {
-        return state.copy(list = state.list, movieClicked = true)
-    }
-
     @Reduce(Actions.UPDATE_MOVIE_LIST)
     fun updateMovieList(state: AppState, newList: List<Movie>): AppState {
-        return state.copy(list = newList, movieClicked = false)
+        return state.copy(list = newList)
     }
 
 }
