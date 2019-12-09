@@ -3,7 +3,6 @@ package com.example.movie_list.ui.components
 import android.content.Context
 import android.widget.LinearLayout
 import com.example.movie_list.actions.ActionCreator
-import com.example.movie_list.model.payloads.ListRequestPayload
 import com.example.movie_list.model.Movie
 import trikita.anvil.DSL.*
 import trikita.anvil.RenderableView

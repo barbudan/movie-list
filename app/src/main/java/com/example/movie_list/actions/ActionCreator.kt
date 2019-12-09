@@ -4,7 +4,6 @@ import com.example.movie_list.MovieListApp
 import com.example.movie_list.actions.Actions.UPDATE_MOVIE_LIST
 import com.example.movie_list.actions.Actions.UPDATE_MOVIE_LIST2
 import com.example.movie_list.model.Movie
-import com.example.movie_list.model.payloads.ListRequestPayload
 import com.github.raulccabreu.redukt.actions.Action
 
 class ActionCreator private constructor() {

@@ -5,13 +5,10 @@ import android.content.Intent
 import android.util.Log
 import android.widget.LinearLayout
 import android.widget.Toast
-import androidx.core.content.ContextCompat.startActivity
 import com.example.movie_list.MovieListApp
 import com.example.movie_list.actions.ActionCreator
 import com.example.movie_list.model.AppState
 import com.example.movie_list.model.Movie
-import com.example.movie_list.model.payloads.ListRequestPayload
-import com.example.movie_list.ui.activities.MainActivity
 import com.example.movie_list.ui.activities.MovieListActivity
 import trikita.anvil.RenderableView
 import trikita.anvil.DSL.*
