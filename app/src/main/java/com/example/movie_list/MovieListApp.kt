@@ -2,9 +2,11 @@ package com.example.movie_list
 
 import android.app.Application
 import android.content.Context
+import com.example.movie_list.middlewares.UpdateListMiddleware
 import com.example.movie_list.model.AppState
 import com.example.movie_list.reducers.AppStateReducer
 import com.github.raulccabreu.redukt.Redukt
+import com.github.raulccabreu.redukt.middlewares.Middleware
 
 class MovieListApp : Application() {
 
@@ -25,7 +27,7 @@ class MovieListApp : Application() {
         }
 
         private fun addMiddlewares(context: Context, redukt: Redukt<AppState>) {
-         //   redukt.middlewares["Middleware"] = Middleware()
+            redukt.middlewares["updateListMiddleware"] = UpdateListMiddleware()
         }
     }
 

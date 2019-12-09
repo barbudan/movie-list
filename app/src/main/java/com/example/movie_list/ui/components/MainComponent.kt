@@ -47,15 +47,9 @@ class MainComponent(context: Context) : RenderableView(context) {
                     text("Update List")
                     textSize(56f)
                     onClick {
-                        // CRIAR MIDDLEWARE PARA ISSO
+                        // Dunno if it's still going to be necessary to pass this movies instance to this action
+                        // because middleware will intercept it and create a new list.
                         val movies = mutableListOf<Movie>()
-                        (1..10).forEach {
-                            movies.add(Movie(
-                                "title${(1..12).shuffled().first()}",
-                                "2010","poster${(1..12).shuffled().first()}",
-                                "comedy${(1..12).shuffled().first()}")
-                            )
-                        }
                         ActionCreator.instance.updateMovieList(movies)
                     }
                 }

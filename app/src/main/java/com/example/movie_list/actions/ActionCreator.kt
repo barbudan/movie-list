@@ -2,6 +2,7 @@ package com.example.movie_list.actions
 
 import com.example.movie_list.MovieListApp
 import com.example.movie_list.actions.Actions.UPDATE_MOVIE_LIST
+import com.example.movie_list.actions.Actions.UPDATE_MOVIE_LIST2
 import com.example.movie_list.model.Movie
 import com.example.movie_list.model.payloads.ListRequestPayload
 import com.github.raulccabreu.redukt.actions.Action
@@ -22,5 +23,11 @@ class ActionCreator private constructor() {
 
     fun updateMovieList(list: List<Movie>) {
         asyncDispatch(Action(UPDATE_MOVIE_LIST, list))
+    }
+
+    // I know this name is bad because of the other action.
+    // It's just a placeholder name until I fully understand the process behind middleware
+    fun updateMovieList2(list: List<Movie>) {
+        asyncDispatch(Action(UPDATE_MOVIE_LIST2, list))
     }
 }
