@@ -31,10 +31,11 @@ class MovieDetailActivity : AppLifecycleActivity() {
             override fun view(){
                 movieDetailComponent {
                     fillIntent(
+                        backdrop = intent.getStringExtra("movie_backdrop"),
                         poster = intent.getStringExtra("movie_poster"),
                         title = intent.getStringExtra("movie_title"),
                         date = intent.getStringExtra("movie_date"),
-                        genre = intent.getStringExtra("movie_genre")
+                        overview = intent.getStringExtra("movie_overview")
                     )
                     state.list?.let { fillList(it) }
                 }

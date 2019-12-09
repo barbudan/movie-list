@@ -16,8 +16,9 @@ class MovieDetailComponent(context: Context) : RenderableView(context) {
 
     var moviePoster: String = ""
     var movieTitle: String = ""
+    var movieOverview: String = ""
     var movieDate: String = ""
-    var movieGenre: String = ""
+    var movieBackdrop: String = ""
     var movieList: List<Movie> = emptyList()
 
     override fun view() {
@@ -26,6 +27,12 @@ class MovieDetailComponent(context: Context) : RenderableView(context) {
             orientation(LinearLayout.VERTICAL)
             padding(dip(8))
             gravity(CENTER)
+            textView {
+                size(WRAP,WRAP)
+                text(movieBackdrop)
+                textSize(56f)
+                gravity(CENTER_HORIZONTAL)
+            }
             textView {
                 size(WRAP,WRAP)
                 text(moviePoster)
@@ -46,18 +53,19 @@ class MovieDetailComponent(context: Context) : RenderableView(context) {
             }
             textView {
                 size(WRAP,WRAP)
-                text(movieGenre)
+                text(movieOverview)
                 textSize(56f)
                 gravity(CENTER_HORIZONTAL)
             }
         }
     }
 
-    fun fillIntent(poster: String, title: String, date: String, genre: String) {
+    fun fillIntent(backdrop: String, poster: String, title: String, date: String, overview: String) {
+        movieBackdrop = backdrop
         moviePoster = poster
         movieTitle = title
         movieDate = date
-        movieGenre = genre
+        movieOverview = overview
     }
 
     fun fillList(list: List<Movie>) {

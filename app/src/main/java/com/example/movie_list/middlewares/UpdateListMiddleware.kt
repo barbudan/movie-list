@@ -17,9 +17,12 @@ class UpdateListMiddleware : BaseAnnotatedMiddleware<AppState>() {
         (1..10).forEach {
             movies.add(
                 Movie(
+                    "id${(1..12).shuffled().first()}",
                     "title${(1..12).shuffled().first()}",
-                    "2010","poster${(1..12).shuffled().first()}",
-                    "comedy${(1..12).shuffled().first()}")
+                    "overview${(1..12).shuffled().first()}",
+                    "201${(1..9).shuffled().first()}",
+                    "poster${(1..12).shuffled().first()}",
+                    "backdrop${(1..12).shuffled().first()}")
             )
         }
         ActionCreator.instance.updateMovieList2(movies)

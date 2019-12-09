@@ -45,11 +45,6 @@ class MovieViewComponent(context: Context) : RenderableView(context) {
                             text(movie.releaseDate)
                             textSize(48f)
                         }
-                        textView {
-                            size(WRAP, WRAP)
-                            text(movie.genre)
-                            textSize(48f)
-                        }
                     }
                 }
             }
