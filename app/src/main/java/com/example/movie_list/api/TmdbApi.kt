@@ -1,5 +1,7 @@
 package com.example.movie_list.api
 
+import com.example.movie_list.BuildConfig
+import com.example.movie_list.model.MoviesResponse
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -10,20 +12,16 @@ interface TmdbApi {
 
     @GET("movie/popular")
     fun getMovies(
-        @Query("api_key") apiKey: String = "3b43af9015e86d58c442d1bb532c1eb2",
+        @Query("api_key") apiKey: String = BuildConfig.API_KEY,
         @Query("page") page: Int
-    ): Call<Any> // Temporary
+    ): Call<MoviesResponse>
 
     companion object {
-        val retrofit = Retrofit.Builder()
-            .baseUrl("https://api.themoviedb.org/3/")
+        val api = Retrofit.Builder()
+            .baseUrl(BuildConfig.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(TmdbApi::class.java)
-
-        fun getPopularMovies() {
-
-        }
     }
 
 }

@@ -2,8 +2,10 @@ package com.example.movie_list.ui.components
 
 import android.content.Context
 import android.widget.LinearLayout
+import com.bumptech.glide.Glide
 import com.example.movie_list.actions.ActionCreator
 import com.example.movie_list.model.Movie
+import trikita.anvil.Anvil
 import trikita.anvil.DSL.*
 import trikita.anvil.RenderableView
 
@@ -24,19 +26,23 @@ class MovieDetailComponent(context: Context) : RenderableView(context) {
         linearLayout {
             size(MATCH,MATCH)
             orientation(LinearLayout.VERTICAL)
-            padding(dip(8))
-            gravity(CENTER)
-            textView {
-                size(WRAP,WRAP)
-                text(movieBackdrop)
-                textSize(56f)
-                gravity(CENTER_HORIZONTAL)
+            //padding(dip(8))
+            //gravity(CENTER)
+            imageView {
+                // TODO Fix image size issue. The size just obbeys the hardcoded width/height from layout
+                // and not the one given by url.
+                size(WRAP, WRAP)
+                Glide.with(context)
+                    .load("https://image.tmdb.org/t/p/original${movieBackdrop}")
+                    .into(Anvil.currentView())
             }
-            textView {
-                size(WRAP,WRAP)
-                text(moviePoster)
-                textSize(56f)
-                gravity(CENTER_HORIZONTAL)
+            imageView {
+                // TODO Fix image size issue. The size just obbeys the hardcoded width/height from layout
+                // and not the one given by url.
+                size(342, WRAP)
+                Glide.with(context)
+                    .load("https://image.tmdb.org/t/p/w342${moviePoster}")
+                    .into(Anvil.currentView())
             }
             textView {
                 size(WRAP,WRAP)

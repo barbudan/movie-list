@@ -16,9 +16,14 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
+        buildTypes.each {
+            it.buildConfigField 'String', 'API_KEY', '"3b43af9015e86d58c442d1bb532c1eb2"'
+            it.buildConfigField 'String', 'BASE_URL', '"https://api.themoviedb.org/3/"'
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+
         }
     }
 }

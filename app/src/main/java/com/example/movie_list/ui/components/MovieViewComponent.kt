@@ -2,7 +2,10 @@ package com.example.movie_list.ui.components
 
 import android.content.Context
 import android.widget.LinearLayout
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.example.movie_list.model.Movie
+import trikita.anvil.Anvil
 import trikita.anvil.RenderableView
 import trikita.anvil.DSL.*
 
@@ -26,10 +29,13 @@ class MovieViewComponent(context: Context) : RenderableView(context) {
                 linearLayout {
                     orientation(LinearLayout.HORIZONTAL)
                     size(WRAP, WRAP)
-                    textView {
-                        size(WRAP, WRAP)
-                        text(movie.posterPath)
-                        textSize(64f)
+                    imageView {
+                        // TODO Fix image size issue. The size just obbeys the hardcoded width/height from layout
+                        // and not the one given by url.
+                        size(342, WRAP)
+                        Glide.with(context)
+                            .load("https://image.tmdb.org/t/p/w342${movie.posterPath}")
+                            .into(Anvil.currentView())
                     }
                     linearLayout {
                         orientation(LinearLayout.VERTICAL)
