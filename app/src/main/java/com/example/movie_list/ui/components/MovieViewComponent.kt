@@ -33,6 +33,7 @@ class MovieViewComponent(context: Context) : RenderableView(context) {
                         // TODO Fix image size issue. The size just obbeys the hardcoded width/height from layout
                         // and not the one given by url. Same problem in MovieDetailComponent
                         size(342, WRAP)
+                        adjustViewBounds(true)
                         Glide.with(context)
                             .load("https://image.tmdb.org/t/p/w342${movie.posterPath}")
                             .into(Anvil.currentView())
@@ -48,7 +49,7 @@ class MovieViewComponent(context: Context) : RenderableView(context) {
                         }
                         textView {
                             size(WRAP, WRAP)
-                            text(movie.releaseDate)
+                            text(movie.releaseDate.substring(0,4))
                             textSize(48f)
                         }
                     }

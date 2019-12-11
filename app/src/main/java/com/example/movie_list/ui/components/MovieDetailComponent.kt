@@ -17,7 +17,7 @@ inline fun movieDetailComponent(crossinline func: MovieDetailComponent.() -> Uni
 
 class MovieDetailComponent(context: Context) : RenderableView(context) {
 
-    var movieTitle: String = ""
+    var movieTitle: String = "" // Is that correct?
     var movieOverview: String = ""
     var movieDate: String = ""
     var movieBackdrop: String = ""
@@ -50,7 +50,7 @@ class MovieDetailComponent(context: Context) : RenderableView(context) {
                 id(DATEID)
                 below(TITLEID)
                 size(WRAP,WRAP)
-                text(movieDate)
+                text(movieDate.substring(0,4))
                 textSize(48f)
                 centerInParent()
             }

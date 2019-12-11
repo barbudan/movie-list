@@ -25,19 +25,22 @@ class UpdateListMiddleware : BaseAnnotatedMiddleware<AppState>() {
                     if (response.isSuccessful) {
                         val responseBody = response.body()
 
+                        // I know i could use responseBody?.let, but what if i want to verify if it's null as well?
                         if (responseBody != null) {
-                            ActionCreator.instance.updateMovieList2(responseBody.movies)
-                            Log.d("Repository", "Movies: ${responseBody.movies}")
+                            ActionCreator.instance.updateMovieList2(responseBody.movies) // Can I do it this way?
+                            Log.d("Middleware", "onResponse -> Movie List: ${responseBody.movies}")
                         } else {
-                            Log.d("Repository", "Failed to get response")
+                            Log.d("Middleware", "onResponse -> Failed to get response")
                         }
                     }
                 }
 
                 override fun onFailure(call: Call<MoviesResponse>, t: Throwable) {
-                    Log.e("Repository", "onFailure", t)
+                    Log.e("Middleware", "onFailure", t)
                 }
-        })
+            })
+
+        // Just to show the old middleware code
         /*var movies = mutableListOf<Movie>()
         (1..10).forEach {
             movies.add(

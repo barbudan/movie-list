@@ -8,9 +8,9 @@ import com.github.raulccabreu.redukt.reducers.BaseAnnotatedReducer
 
 class AppStateReducer : BaseAnnotatedReducer<AppState>() {
 
+    // Is it still necessary? As this Action is going to be intercepted by middleware.
     /*@Reduce(Actions.UPDATE_MOVIE_LIST)
     fun updateMovieList(state: AppState, newList: List<Movie>): AppState {
-        Log.i("Teste", "Oi")
         return state.copy(list = newList)
     }*/
 

@@ -23,7 +23,7 @@ class MovieDetailActivity : AppLifecycleActivity() {
     }
 
     override fun onChanged(state: AppState) {
-
+        // Should i put something in here? Is blank enough?
     }
 
     fun getView(c: Context): View {

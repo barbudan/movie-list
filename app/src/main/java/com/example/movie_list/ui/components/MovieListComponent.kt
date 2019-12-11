@@ -42,7 +42,7 @@ class MovieListComponent(context: Context) : RenderableView(context) {
                 onItemClick { av, v, pos, id ->
                     val item = state.list?.get(pos)!!
                     val intent = Intent(context, MovieDetailActivity::class.java)
-                    //intent.putExtra("movie_id", item.id)
+                    //intent.putExtra("movie_id", item.id) -> not used
                     intent.putExtra("movie_title", item.title)
                     intent.putExtra("movie_overview", item.overview)
                     intent.putExtra("movie_date", item.releaseDate)

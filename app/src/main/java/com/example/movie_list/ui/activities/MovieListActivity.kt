@@ -30,7 +30,7 @@ class MovieListActivity : AppLifecycleActivity() {
     }
 
     override fun onChanged(state: AppState) {
-
+        // Should i put something in here? Is blank enough?
     }
 
 }
