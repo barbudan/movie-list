@@ -14,7 +14,7 @@ import trikita.anvil.DSL.*
 
 class MovieListActivity : AppLifecycleActivity() {
     
-    val listComponent = ListComponent<Movie>() // TALVEZ MODIFICAR/RETIRAR ESSE COMPONENTE
+    val listComponent = ListComponent<Movie>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

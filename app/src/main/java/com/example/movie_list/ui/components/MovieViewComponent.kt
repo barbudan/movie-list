@@ -31,7 +31,7 @@ class MovieViewComponent(context: Context) : RenderableView(context) {
                     size(WRAP, WRAP)
                     imageView {
                         // TODO Fix image size issue. The size just obbeys the hardcoded width/height from layout
-                        // and not the one given by url.
+                        // and not the one given by url. Same problem in MovieDetailComponent
                         size(342, WRAP)
                         Glide.with(context)
                             .load("https://image.tmdb.org/t/p/w342${movie.posterPath}")

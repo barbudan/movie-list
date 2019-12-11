@@ -46,7 +46,6 @@ class MovieListComponent(context: Context) : RenderableView(context) {
                     intent.putExtra("movie_title", item.title)
                     intent.putExtra("movie_overview", item.overview)
                     intent.putExtra("movie_date", item.releaseDate)
-                    intent.putExtra("movie_poster", item.posterPath)
                     intent.putExtra("movie_backdrop", item.backdropPath)
                     context.startActivity(intent)
                 }

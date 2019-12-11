@@ -32,7 +32,6 @@ class MovieDetailActivity : AppLifecycleActivity() {
                 movieDetailComponent {
                     fillIntent(
                         backdrop = intent.getStringExtra("movie_backdrop"),
-                        poster = intent.getStringExtra("movie_poster"),
                         title = intent.getStringExtra("movie_title"),
                         date = intent.getStringExtra("movie_date"),
                         overview = intent.getStringExtra("movie_overview")

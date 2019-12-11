@@ -3,9 +3,11 @@ package com.example.movie_list.ui.components
 import android.content.Context
 import android.widget.LinearLayout
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.example.movie_list.actions.ActionCreator
 import com.example.movie_list.model.Movie
 import trikita.anvil.Anvil
+import trikita.anvil.BaseDSL
 import trikita.anvil.DSL.*
 import trikita.anvil.RenderableView
 
@@ -15,59 +17,56 @@ inline fun movieDetailComponent(crossinline func: MovieDetailComponent.() -> Uni
 
 class MovieDetailComponent(context: Context) : RenderableView(context) {
 
-    var moviePoster: String = ""
     var movieTitle: String = ""
     var movieOverview: String = ""
     var movieDate: String = ""
     var movieBackdrop: String = ""
     var movieList: List<Movie> = emptyList()
+    val BACKDROPID = 100
+    val TITLEID = 102
+    val DATEID = 103
+    val OVERVIEWID = 104
 
     override fun view() {
-        linearLayout {
+        relativeLayout {
             size(MATCH,MATCH)
-            orientation(LinearLayout.VERTICAL)
-            //padding(dip(8))
-            //gravity(CENTER)
             imageView {
-                // TODO Fix image size issue. The size just obbeys the hardcoded width/height from layout
-                // and not the one given by url.
-                size(WRAP, WRAP)
+                id(BACKDROPID)
+                BaseDSL.alignParentTop()
+                size(FILL, WRAP)
                 Glide.with(context)
-                    .load("https://image.tmdb.org/t/p/original${movieBackdrop}")
-                    .into(Anvil.currentView())
-            }
-            imageView {
-                // TODO Fix image size issue. The size just obbeys the hardcoded width/height from layout
-                // and not the one given by url.
-                size(342, WRAP)
-                Glide.with(context)
-                    .load("https://image.tmdb.org/t/p/w342${moviePoster}")
+                    .load("https://image.tmdb.org/t/p/w780${movieBackdrop}")
                     .into(Anvil.currentView())
             }
             textView {
+                id(TITLEID)
+                below(BACKDROPID)
                 size(WRAP,WRAP)
                 text(movieTitle)
-                textSize(56f)
-                gravity(CENTER_HORIZONTAL)
+                textSize(72f)
+                centerInParent()
             }
             textView {
+                id(DATEID)
+                below(TITLEID)
                 size(WRAP,WRAP)
                 text(movieDate)
-                textSize(56f)
-                gravity(CENTER_HORIZONTAL)
+                textSize(48f)
+                centerInParent()
             }
             textView {
+                id(OVERVIEWID)
                 size(WRAP,WRAP)
+                margin(8,24,8,8)
+                below(DATEID)
                 text(movieOverview)
                 textSize(56f)
-                gravity(CENTER_HORIZONTAL)
             }
         }
     }
 
-    fun fillIntent(backdrop: String, poster: String, title: String, date: String, overview: String) {
+    fun fillIntent(backdrop: String, title: String, date: String, overview: String) {
         movieBackdrop = backdrop
-        moviePoster = poster
         movieTitle = title
         movieDate = date
         movieOverview = overview
