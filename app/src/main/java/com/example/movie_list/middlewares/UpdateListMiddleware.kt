@@ -18,29 +18,6 @@ class UpdateListMiddleware : BaseAnnotatedMiddleware<AppState>() {
 
     @BeforeAction(Actions.UPDATE_MOVIE_LIST)
     fun getListFromApi(state: AppState, action: Action<*>) {
-        api.getMovies(page = 1)
-            .enqueue(object : Callback<MoviesResponse> {
-                override fun onResponse(call: Call<MoviesResponse>, response: Response<MoviesResponse>) {
-                    if (response.isSuccessful) {
-                        val responseBody = response.body()
-
-                        if (responseBody != null) {
-                            ActionCreator.instance.fetchMovieList(responseBody.movies)
-                            Log.d("Middleware", "onResponse -> Movie List: ${responseBody.movies}")
-                        } else {
-                            Log.d("Middleware", "onResponse -> Failed to get response")
-                        }
-                    }
-                }
-
-                override fun onFailure(call: Call<MoviesResponse>, t: Throwable) {
-                    Log.e("Middleware", "onFailure", t)
-                }
-            })
-    }
-
-    @BeforeAction(Actions.LOAD_NEXT_PAGE)
-    fun getNextPageFromApi(state: AppState, action: Action<*>) {
         api.getMovies(page = action.payload as Int)
             .enqueue(object : Callback<MoviesResponse> {
                 override fun onResponse(call: Call<MoviesResponse>, response: Response<MoviesResponse>) {
@@ -48,7 +25,7 @@ class UpdateListMiddleware : BaseAnnotatedMiddleware<AppState>() {
                         val responseBody = response.body()
 
                         if (responseBody != null) {
-                            ActionCreator.instance.fetchNextPage(responseBody.movies)
+                            ActionCreator.instance.fetchMovieList(responseBody.movies)
                             Log.d("Middleware", "onResponse -> Movie List: ${responseBody.movies}")
                         } else {
                             Log.d("Middleware", "onResponse -> Failed to get response")

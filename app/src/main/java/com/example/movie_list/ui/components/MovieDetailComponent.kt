@@ -2,6 +2,7 @@ package com.example.movie_list.ui.components
 
 import android.content.Context
 import com.bumptech.glide.Glide
+import com.example.movie_list.BuildConfig
 import com.example.movie_list.model.Movie
 import trikita.anvil.Anvil
 import trikita.anvil.BaseDSL
@@ -36,7 +37,7 @@ class MovieDetailComponent(context: Context) : RenderableView(context) {
                 BaseDSL.alignParentTop()
                 size(FILL, WRAP)
                 Glide.with(context)
-                    .load("https://image.tmdb.org/t/p/w780${movieBackdrop}")
+                    .load(BuildConfig.MOVIE_BACKDROP+movieBackdrop)
                     .into(Anvil.currentView())
             }
             textView {

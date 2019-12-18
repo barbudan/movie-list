@@ -7,17 +7,15 @@
 
 ## What informations are present for each movie in the main page?
     Movie Title
-    Movie Genre
     Movie Release Date
-    Movie Poster/Pic
+    Movie Poster
 
 ## What informations are present for each movie in the specific movie page?
     Movie Title
-    Movie Genre
     Movie Release Date
-    Larger Movie Poster/Pic
+    Movie Poster
+    Movie Backdrop
     Movie Summary
-    Movie Cast (perhaps)
 
 ## Techs to be used:
     Redukt
@@ -31,37 +29,36 @@
 #### packages -> model, action, middleware, reducer, api
 
 ## Actions
-    List Movies
-    Show Movie
+    Update Movie List
+    Load Next Page
 
 ## Middlewares
     Before Listing Movies, we'll need to intercept it (because we need to consume the API through Middleware) and generate another Action
-    Before Showing a specific movie, we'll need to intercept it (because we need to consume the API through Middleware) and generate another Action
 
 ## UI
     # First Page:
         - TextView (Welcome message)
+        - Button (Updates and fills the List)
         - Button (Redirects to second page)
 
     # Second Page:
         - LinearLayout [horizontal]
-            - ListView (Rodrigo told me that RecyclerView isn't very good to use on Anvil yet)
+            - ListView
+            - Button (Load next page)
                 
         - ListView Adapter
             - RelativeLayout
                 - ImageView (movie poster)
                 - TextView (movie title)
                 - TextView (movie year)
-                - TextView (movie genre)
 
     # Third Page:
         RelativeLayout
-            - ImageView (movie poster [larger size])
+            - ImageView (movie backdrop)
+            - ImageView (movie poster)
             - TextView (movie title)
             - TextView (movie year)
-            - TextView (movie genre)
             - TextView (movie summary)
-            - TextView (movie cast)
 
 
 # TRELLO CARDS
