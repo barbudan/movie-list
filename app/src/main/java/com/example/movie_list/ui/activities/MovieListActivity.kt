@@ -9,12 +9,15 @@ import com.example.movie_list.ui.components.movieListComponent
 class MovieListActivity : AppLifecycleActivity() {
     
     val listComponent = ListComponent<Movie>()
+    var page = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setContentView(listComponent.showItemList(this) {
-            movieListComponent {}
+            movieListComponent {
+                refreshListPage(page)
+            }
         })
     }
 
@@ -22,6 +25,8 @@ class MovieListActivity : AppLifecycleActivity() {
         return newState != oldState
     }
 
-    override fun onChanged(state: AppState) { }
+    override fun onChanged(state: AppState) {
+        page++
+    }
 
 }

@@ -3,7 +3,9 @@ package com.example.movie_list.ui.components
 import android.content.Context
 import android.content.Intent
 import android.widget.LinearLayout
+import com.example.movie_list.R
 import com.example.movie_list.MovieListApp
+import com.example.movie_list.actions.ActionCreator
 import com.example.movie_list.model.AppState
 import com.example.movie_list.model.Movie
 import com.example.movie_list.ui.activities.MovieDetailActivity
@@ -19,6 +21,8 @@ class MovieListComponent(context: Context) : RenderableView(context) {
     protected val state: AppState
         get() = MovieListApp.redukt.state
 
+    var listPage = 0
+
     val movieAdapter =
         ListAdapter<Movie> { item ->
             movieViewComponent {
@@ -32,9 +36,10 @@ class MovieListComponent(context: Context) : RenderableView(context) {
             size(MATCH,MATCH)
             padding(dip(8))
             orientation(LinearLayout.VERTICAL)
+            gravity(CENTER)
 
             listView {
-                size(FILL,FILL)
+                size(dip(380),dip(520)) // Check if exists some kind of screen percentage instead of dip
                 adapter(movieAdapter)
                 onItemClick { av, v, pos, id ->
                     val item = state.list?.get(pos)!!
@@ -46,7 +51,20 @@ class MovieListComponent(context: Context) : RenderableView(context) {
                     context.startActivity(intent)
                 }
             }
+
+            button {
+                size(WRAP,WRAP)
+                text(context.getString(R.string.load_next_page))
+                textSize(56f)
+                onClick {
+                    ActionCreator.instance.loadNextPage(listPage)
+                }
+            }
         }
+    }
+
+    fun refreshListPage(page: Int) {
+        listPage = page
     }
 
 }

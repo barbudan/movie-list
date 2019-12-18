@@ -10,5 +10,6 @@
     <!-- BUTTONS -->
     <string name="update_list">Update List</string>
     <string name="list_movies">List Movies</string>
+    <string name="load_next_page">Load Next Page</string>
 
 </resources>
