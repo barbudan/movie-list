@@ -57,7 +57,7 @@ class MovieListComponent(context: Context) : RenderableView(context) {
                 text(context.getString(R.string.load_next_page))
                 textSize(56f)
                 onClick {
-                    ActionCreator.instance.loadNextPage(listPage)
+                    ActionCreator.instance.updateMovieList(listPage)
                 }
             }
         }

@@ -44,10 +44,7 @@ class MainComponent(context: Context) : RenderableView(context) {
                     text(context.getString(R.string.update_list))
                     textSize(56f)
                     onClick {
-                        // Dunno if it's still going to be necessary to pass this movies instance to this action
-                        // because middleware will intercept it and create a new list.
-                        val movies = mutableListOf<Movie>()
-                        ActionCreator.instance.updateMovieList(movies)
+                        ActionCreator.instance.updateMovieList(1)
                     }
                 }
                 button {
