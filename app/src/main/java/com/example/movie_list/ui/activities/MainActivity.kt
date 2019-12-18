@@ -1,15 +1,13 @@
 package com.example.movie_list.ui.activities
 
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Toast
+import com.example.movie_list.R
 import com.example.movie_list.model.AppState
 import com.example.movie_list.ui.components.mainComponent
 import trikita.anvil.RenderableView
-import trikita.anvil.DSL.activity
 
 class MainActivity : AppLifecycleActivity() {
 
@@ -28,7 +26,7 @@ class MainActivity : AppLifecycleActivity() {
             runOnUiThread {
                 Toast.makeText(
                     this,
-                    "Your List has been Updated",
+                    getString(R.string.list_has_been_updated),
                     Toast.LENGTH_SHORT
                 ).show()
             }

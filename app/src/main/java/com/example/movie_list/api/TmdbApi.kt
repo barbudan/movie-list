@@ -12,13 +12,13 @@ interface TmdbApi {
 
     @GET("movie/popular")
     fun getMovies(
-        @Query("api_key") apiKey: String = BuildConfig.API_KEY, // Is it correct? Created from build.gradle
+        @Query("api_key") apiKey: String = BuildConfig.API_KEY,
         @Query("page") page: Int
     ): Call<MoviesResponse>
 
     companion object {
         val api = Retrofit.Builder()
-            .baseUrl(BuildConfig.BASE_URL) // Is it correct? Created from build.gradle
+            .baseUrl(BuildConfig.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(TmdbApi::class.java)

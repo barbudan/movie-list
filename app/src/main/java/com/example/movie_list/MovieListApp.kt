@@ -6,7 +6,6 @@ import com.example.movie_list.middlewares.UpdateListMiddleware
 import com.example.movie_list.model.AppState
 import com.example.movie_list.reducers.AppStateReducer
 import com.github.raulccabreu.redukt.Redukt
-import com.github.raulccabreu.redukt.middlewares.Middleware
 
 class MovieListApp : Application() {
 

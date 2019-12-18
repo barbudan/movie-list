@@ -2,11 +2,8 @@ package com.example.movie_list.ui.activities
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import com.example.movie_list.model.AppState
-import com.example.movie_list.ui.components.MovieDetailComponent
-import com.example.movie_list.ui.components.mainComponent
 import com.example.movie_list.ui.components.movieDetailComponent
 import trikita.anvil.RenderableView
 
@@ -18,13 +15,10 @@ class MovieDetailActivity : AppLifecycleActivity() {
     }
 
     override fun hasChanged(newState: AppState, oldState: AppState): Boolean {
-        if (newState != oldState) return true
-        return false
+        return newState != oldState
     }
 
-    override fun onChanged(state: AppState) {
-        // Should i put something in here? Is blank enough?
-    }
+    override fun onChanged(state: AppState) { }
 
     fun getView(c: Context): View {
         return object : RenderableView(c) {

@@ -2,13 +2,10 @@ package com.example.movie_list.ui.components
 
 import android.content.Context
 import android.content.Intent
-import android.util.Log
 import android.widget.LinearLayout
 import com.example.movie_list.MovieListApp
-import com.example.movie_list.actions.ActionCreator
 import com.example.movie_list.model.AppState
 import com.example.movie_list.model.Movie
-import com.example.movie_list.ui.activities.AppLifecycleActivity
 import com.example.movie_list.ui.activities.MovieDetailActivity
 import trikita.anvil.DSL.*
 import trikita.anvil.RenderableView
@@ -42,7 +39,6 @@ class MovieListComponent(context: Context) : RenderableView(context) {
                 onItemClick { av, v, pos, id ->
                     val item = state.list?.get(pos)!!
                     val intent = Intent(context, MovieDetailActivity::class.java)
-                    //intent.putExtra("movie_id", item.id) -> not used
                     intent.putExtra("movie_title", item.title)
                     intent.putExtra("movie_overview", item.overview)
                     intent.putExtra("movie_date", item.releaseDate)

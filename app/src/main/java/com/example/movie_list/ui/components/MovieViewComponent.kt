@@ -3,7 +3,6 @@ package com.example.movie_list.ui.components
 import android.content.Context
 import android.widget.LinearLayout
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.example.movie_list.model.Movie
 import trikita.anvil.Anvil
 import trikita.anvil.RenderableView

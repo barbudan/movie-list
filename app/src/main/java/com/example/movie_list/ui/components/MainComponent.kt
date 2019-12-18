@@ -2,9 +2,9 @@ package com.example.movie_list.ui.components
 
 import android.content.Context
 import android.content.Intent
-import android.util.Log
 import android.widget.LinearLayout
 import android.widget.Toast
+import com.example.movie_list.R
 import com.example.movie_list.MovieListApp
 import com.example.movie_list.actions.ActionCreator
 import com.example.movie_list.model.AppState
@@ -31,7 +31,7 @@ class MainComponent(context: Context) : RenderableView(context) {
             gravity(CENTER)
             textView {
                 size(WRAP, WRAP)
-                text("Hello! Click on the button below to show our movies list!")
+                text(context.getString(R.string.hello_msg))
                 textSize(64f)
                 gravity(CENTER_HORIZONTAL)
             }
@@ -41,7 +41,7 @@ class MainComponent(context: Context) : RenderableView(context) {
                 gravity(CENTER)
                 button {
                     size(WRAP, WRAP)
-                    text("Update List")
+                    text(context.getString(R.string.update_list))
                     textSize(56f)
                     onClick {
                         // Dunno if it's still going to be necessary to pass this movies instance to this action
@@ -52,13 +52,13 @@ class MainComponent(context: Context) : RenderableView(context) {
                 }
                 button {
                     size(WRAP, WRAP)
-                    text("List movies")
+                    text(context.getString(R.string.list_movies))
                     textSize(56f)
                     onClick {
                         if(state.list==null) {
                             Toast.makeText(
                                 context,
-                                "Your List is not populated yet, please update it",
+                                context.getString(R.string.list_not_populated),
                                 Toast.LENGTH_SHORT
                             ).show()
                         } else {

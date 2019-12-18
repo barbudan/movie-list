@@ -1,10 +1,7 @@
 package com.example.movie_list.ui.components
 
 import android.content.Context
-import android.widget.LinearLayout
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.bitmap.CenterCrop
-import com.example.movie_list.actions.ActionCreator
 import com.example.movie_list.model.Movie
 import trikita.anvil.Anvil
 import trikita.anvil.BaseDSL
@@ -17,15 +14,19 @@ inline fun movieDetailComponent(crossinline func: MovieDetailComponent.() -> Uni
 
 class MovieDetailComponent(context: Context) : RenderableView(context) {
 
-    var movieTitle: String = "" // Is that correct?
+    var movieTitle: String = ""
     var movieOverview: String = ""
     var movieDate: String = ""
     var movieBackdrop: String = ""
     var movieList: List<Movie> = emptyList()
-    val BACKDROPID = 100
-    val TITLEID = 102
-    val DATEID = 103
-    val OVERVIEWID = 104
+
+    companion object {
+        const val BACKDROPID = 100
+        const val TITLEID = 102
+        const val DATEID = 103
+        const val OVERVIEWID = 104
+    }
+
 
     override fun view() {
         relativeLayout {
