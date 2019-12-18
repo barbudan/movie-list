@@ -3,6 +3,7 @@ package com.example.movie_list.ui.components
 import android.content.Context
 import android.widget.LinearLayout
 import com.bumptech.glide.Glide
+import com.example.movie_list.BuildConfig
 import com.example.movie_list.model.Movie
 import trikita.anvil.Anvil
 import trikita.anvil.RenderableView
@@ -29,12 +30,10 @@ class MovieViewComponent(context: Context) : RenderableView(context) {
                     orientation(LinearLayout.HORIZONTAL)
                     size(WRAP, WRAP)
                     imageView {
-                        // TODO Fix image size issue. The size just obbeys the hardcoded width/height from layout
-                        // and not the one given by url. Same problem in MovieDetailComponent
                         size(342, WRAP)
                         adjustViewBounds(true)
                         Glide.with(context)
-                            .load("https://image.tmdb.org/t/p/w342${movie.posterPath}")
+                            .load(BuildConfig.MOVIE_POSTER+movie.posterPath)
                             .into(Anvil.currentView())
                     }
                     linearLayout {
